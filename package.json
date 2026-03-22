@@ -1,10 +1,7 @@
 {
   "name": "@uid36/uid36",
   "version": "1.0.1",
-  "description": "",
-  "main": "./dist/node.js",
-  "module": "./dist/browser.js",
-  "types": "dist/index.d.ts",
+  "description": "A compact, URL-safe, and type-safe identifier format designed for performance, ordering, and reversibility.",
   "type": "module",
   "scripts": {
     "build": "tsc"
@@ -22,9 +19,27 @@
   },
   "exports": {
     ".": {
-      "browser": "./dist/browser.js",
-      "node": "./dist/node.js",
-      "default": "./dist/node.js"
+      "node": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.js"
+      },
+      "browser": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.js"
+      },
+      "default": "./dist/index.js"
+    },
+    "./random.js": {
+      "node": "./dist/random/node.js",
+      "browser": "./dist/random/browser.js",
+      "default": "./dist/random/node.js"
+    }
+  },
+  "imports": {
+    "#test": {
+      "node": "./dist/random/node.js",
+      "browser": "./dist/random/browser.js",
+      "default": "./dist/random/node.js"
     }
   },
   "dependencies": {

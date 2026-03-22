@@ -32,3 +32,7 @@ export function fastRandomBytes(length: number): Uint8Array {
 
   return bytes;
 }
+
+export function randomBytes(length: number, secure: boolean): Uint8Array {
+  return secure ? secureRandomBytes(length) : fastRandomBytes(length);
+}

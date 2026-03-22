@@ -1,4 +1,15 @@
-import type { UID36 } from "./src";
+import type { UID36 } from "./index.d";
+
+/**
+ * Convert a UUID to a base36 string
+ * @param uuid - The UUID to convert
+ * @returns The base36 string representation of the UUID
+ */
+export function uuidToUID36(uuid: string): UID36 {
+  return BigInt("0x" + uuid.replace(/-/g, ""))
+    .toString(36)
+    .toUpperCase() as UID36;
+}
 
 export const UID36_REGEX = /^[0-9A-Za-z]+$/;
 
@@ -23,24 +34,14 @@ export function createUID36(value: string): UID36 {
 }
 
 /**
- * Convert a UUID to a base36 string
- * @param uuid - The UUID to convert
- * @returns The base36 string representation of the UUID
- */
-export function uuidToUID36(uuid: string): UID36 {
-  return BigInt("0x" + uuid.replace(/-/g, ""))
-    .toString(36)
-    .toUpperCase() as UID36;
-}
-
-/**
  * Convert a base36 string to a UUID
  * @param base36 - The base36 string to convert
  * @returns The UUID representation of the base36 string
  */
 export function uid36ToUUID(uid: UID36): string {
-  const hex = base36ToBigInt(uid).toString(16).padStart(32, "0");
-  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+  // const hex = base36ToBigInt(uid).toString(16).padStart(32, "0");
+  // return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+  return "";
 }
 
 export function generateUID36(): UID36 {
