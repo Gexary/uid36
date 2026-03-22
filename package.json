@@ -1,6 +1,6 @@
 {
   "name": "@uid36/uid36",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A compact, URL-safe, and type-safe identifier format designed for performance, ordering, and reversibility.",
   "type": "module",
   "scripts": {
