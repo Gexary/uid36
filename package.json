@@ -1,0 +1,33 @@
+{
+  "name": "@uid36/uid36",
+  "version": "1.0.1",
+  "description": "",
+  "main": "./dist/node.js",
+  "module": "./dist/browser.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [
+    "uuid",
+    "base36",
+    "converter"
+  ],
+  "author": "Gexary",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "typescript": "^5.9.3"
+  },
+  "exports": {
+    ".": {
+      "browser": "./dist/browser.js",
+      "node": "./dist/node.js",
+      "default": "./dist/node.js"
+    }
+  },
+  "dependencies": {
+    "tsx": "^4.21.0"
+  }
+}
