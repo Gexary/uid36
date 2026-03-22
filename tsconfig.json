@@ -5,8 +5,9 @@
     "outDir": "./dist",
 
     // Environment Settings
-    "module": "esnext",
-    "target": "esnext",
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "node",
     "types": ["node"],
 
     // Other Outputs
@@ -26,5 +27,6 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true
-  }
+  },
+  "include": ["src"]
 }

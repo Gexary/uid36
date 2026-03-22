@@ -1,3 +1,5 @@
+import { secureRandomBytes } from "./random";
+
 /**
  * Converts a byte array (Uint8Array) into a Base36 encoded string.
  *

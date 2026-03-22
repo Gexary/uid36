@@ -1,1 +1,1 @@
-export declare function secureRandomBytes(length: number): Uint8Array;
+export { secureRandomBytes } from "./random/node";
