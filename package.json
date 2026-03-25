@@ -1,26 +1,33 @@
 {
   "name": "@uid36/uid36",
   "version": "1.0.5",
-  "description": "A compact, URL-safe, and type-safe identifier format designed for performance, ordering, and reversibility.",
+  "description": "A compact, URL-safe, and type-safe identifier format designed for performance, ordering and security.",
   "author": "Gexary",
   "keywords": [
     "uuid",
     "base36",
-    "converter"
+    "converter",
+    "unique",
+    "timestamp",
+    "random",
+    "uid",
+    "id",
+    "identifier"
   ],
-  "type": "module",
-  "scripts": {
-    "build": "tsup"
-  },
+  "license": "MIT",
+  "homepage": "https://github.com/gexary/uid36",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gexary/uid36.git"
   },
-  "homepage": "https://github.com/gexary/uid36",
-  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "tsup"
+  },
   "devDependencies": {
     "@types/node": "^25.5.0",
     "esbuild": "^0.27.4",
+    "tsc": "^2.0.4",
     "tsup": "^8.5.1",
     "typescript": "^5.9.3"
   },
