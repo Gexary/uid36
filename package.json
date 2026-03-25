@@ -1,6 +1,6 @@
 {
   "name": "@uid36/uid36",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A compact, URL-safe, and type-safe identifier format designed for performance, ordering, and reversibility.",
   "type": "module",
   "scripts": {
@@ -8,9 +8,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/geaxry/uid36.git"
+    "url": "git+https://github.com/gexary/uid36.git"
   },
-  "homepage": "https://github.com/geaxry/uid36",
+  "homepage": "https://github.com/gexary/uid36",
   "keywords": [
     "uuid",
     "base36",
