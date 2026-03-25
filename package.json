@@ -6,6 +6,11 @@
   "scripts": {
     "build": "tsc"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ton-username/ton-repo.git"
+  },
+  "homepage": "https://github.com/ton-username/ton-repo",
   "keywords": [
     "uuid",
     "base36",

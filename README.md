@@ -1,3 +1,6 @@
+![UID36 Logo](./assets/logo1x.png)
+<img src="https://raw.githubusercontent.com/gexary/uid36/main/assets/logox1.png" width="100%" />
+
 # UID36
 
 A compact, URL-safe, and type-safe identifier format designed for performance, ordering, and reversibility.
