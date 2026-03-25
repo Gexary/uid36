@@ -5,7 +5,9 @@
 
 A compact, URL-safe, and type-safe identifier format designed for performance, ordering, and reversibility.
 
----
+```bash
+pnpm add uid36@uid36
+```
 
 ## Overview
 
@@ -55,9 +57,7 @@ It combines the strengths of UUIDs, ULIDs, and NanoIDs into a single cohesive fo
 - Monotonic generation support
 - Deterministic parsing and validation
 - High-performance generation (optimized for JS/TS)
-- Strong typing for safer usage
 - Compact representation (shorter than UUID)
-- Reversible (encode ↔ decode)
 
 ---
 
@@ -71,14 +71,6 @@ It combines the strengths of UUIDs, ULIDs, and NanoIDs into a single cohesive fo
 | Type-safe      | Yes             | Limited   | Limited |
 | URL-safe       | Yes             | Yes (hex) | Yes     |
 | Collision-safe | Yes             | Yes       | Yes     |
-
----
-
-## Installation
-
-```bash
-npm install uid36@uid36
-```
 
 ---
 
@@ -147,45 +139,6 @@ Validation guarantees:
 - Correct base36 encoding
 - Valid length
 - Proper structure
-
----
-
-## Parsing
-
-```ts
-import { parseUID36 } from "uid36";
-
-const parsed = parseUID36("abc123...");
-```
-
-Output:
-
-```ts
-{
-  timestamp?: number;
-  randomness: Uint8Array;
-}
-```
-
----
-
-## Encoding
-
-```ts
-import { encodeUID36 } from "uid36";
-
-const id = encodeUID36(bytes);
-```
-
----
-
-## Decoding
-
-```ts
-import { decodeUID36 } from "uid36";
-
-const bytes = decodeUID36(id);
-```
 
 ---
 
