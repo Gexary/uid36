@@ -1,5 +1,5 @@
-![UID36 Logo](./assets/logo1x.png)
-<img src="https://raw.githubusercontent.com/gexary/uid36/main/assets/logox1.png" width="100%" />
+<!-- ![UID36 Logo](./assets/logo1x.png) -->
+<img src="https://raw.githubusercontent.com/gexary/uid36/main/assets/banner.png" width="100%" />
 
 # UID36
 
