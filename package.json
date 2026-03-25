@@ -8,9 +8,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ton-username/ton-repo.git"
+    "url": "git+https://github.com/geaxry/uid36.git"
   },
-  "homepage": "https://github.com/ton-username/ton-repo",
+  "homepage": "https://github.com/geaxry/uid36",
   "keywords": [
     "uuid",
     "base36",
