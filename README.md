@@ -77,7 +77,7 @@ It combines the strengths of UUIDs, ULIDs, and NanoIDs into a single cohesive fo
 ## Installation
 
 ```bash
-npm install uid36
+npm install uid36@uid36
 ```
 
 ---

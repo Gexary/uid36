@@ -26,7 +26,11 @@
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+
+    "paths": {
+      "random": ["./src/random/node.ts"]
+    }
   },
   "include": ["src"]
 }

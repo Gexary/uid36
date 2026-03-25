@@ -1,4 +1,4 @@
-import { secureRandomBytes } from "./random";
+import { secureRandomBytes } from "random";
 
 /**
  * Converts a byte array (Uint8Array) into a Base36 encoded string.
@@ -27,7 +27,7 @@ export function bufferToBase36(bytes: Uint8Array): string {
  * @param length - Number of random bytes to generate
  * @returns A Uint8Array containing random values between 0 and 255
  */
-export function fastRandomBytes(length: number): Uint8Array {
+function fastRandomBytes(length: number): Uint8Array {
   const bytes = new Uint8Array(length);
 
   for (let i = 0; i < length; i++) bytes[i] = (Math.random() * 256) | 0;

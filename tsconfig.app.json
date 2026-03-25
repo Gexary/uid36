@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "random": ["./src/random/browser.ts"]
+    }
+  }
+}

@@ -1,43 +1,42 @@
 {
   "name": "@uid36/uid36",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A compact, URL-safe, and type-safe identifier format designed for performance, ordering, and reversibility.",
+  "author": "Gexary",
+  "keywords": [
+    "uuid",
+    "base36",
+    "converter"
+  ],
   "type": "module",
   "scripts": {
-    "build": "tsc"
+    "build": "tsup"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gexary/uid36.git"
   },
   "homepage": "https://github.com/gexary/uid36",
-  "keywords": [
-    "uuid",
-    "base36",
-    "converter"
-  ],
-  "author": "Gexary",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^25.5.0",
+    "esbuild": "^0.27.4",
+    "tsup": "^8.5.1",
     "typescript": "^5.9.3"
   },
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "node": "./dist/index.js",
-      "browser": "./dist/index.js",
-      "default": "./dist/index.js"
-    },
-    "./random": {
-      "import": {
-        "node": "./dist/random/node.js",
-        "browser": "./dist/random/browser.js",
-        "default": "./dist/random/node.js"
-      }
+      "node": {
+        "types": "./dist/node/index.d.ts",
+        "import": "./dist/node/index.js",
+        "require": "./dist/node/index.cjs"
+      },
+      "browser": {
+        "types": "./dist/browser/index.d.ts",
+        "import": "./dist/browser/index.js",
+        "require": "./dist/browser/index.cjs"
+      },
+      "default": "./dist/node/index.js"
     }
-  },
-  "dependencies": {
-    "tsx": "^4.21.0"
   }
 }
