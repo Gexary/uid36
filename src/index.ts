@@ -1,5 +1,6 @@
-import type { RandomUID36, TimestampUID36, UID36, UID36Options } from "./index.d";
+import type { RandomUID36, TimeUID36, UID36, UID36Options } from "./index.d";
 import { bufferToBase36, randomBytes } from "./utils";
+export { bufferToBase36, base36ToBuffer } from "./utils";
 
 const LOG2_36 = Math.log2(36);
 
@@ -19,7 +20,7 @@ export function randomUID36({ lower = false, length = 16, secure = true }: UID36
   return stylizeUID36(result, maxLength, lower);
 }
 
-export function timestampUID36({ lower = false, secure = true }: UID36Options = {}): TimestampUID36 {
+export function timeUID36({ lower = false, secure = true }: UID36Options = {}): TimeUID36 {
   const bytes = new Uint8Array(16);
 
   const now = Date.now();
@@ -30,4 +31,14 @@ export function timestampUID36({ lower = false, secure = true }: UID36Options = 
 
   let result = bufferToBase36(bytes);
   return stylizeUID36(result, 25, lower);
+}
+
+export const UID36_REGEX = /^[0-9A-Za-z]+$/;
+
+export function isUID36(value: string, length = 25): value is UID36 {
+  return value.length === length && UID36_REGEX.test(value);
+}
+
+export function normalizeUID36<T extends UID36>(value: string): T {
+  return value.trim().toUpperCase() as T;
 }

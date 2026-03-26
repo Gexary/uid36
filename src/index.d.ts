@@ -28,7 +28,7 @@ export type RandomUID36 = UID36;
  * This type represents an identifier that includes time information,
  * allowing ordering based on creation time.
  */
-export type TimestampUID36 = UID36;
+export type TimeUID36 = UID36;
 
 /**
  * Generates a random UID36.
@@ -62,9 +62,9 @@ export declare function randomUID36(options?: UID36Options & { length?: number }
  * @param options - Configuration options
  * @param options.lower - If true, returns lowercase characters
  * @param options.secure - Whether to use cryptographically secure randomness
- * @returns A TimestampUID36 string
+ * @returns A TimeUID36 string
  */
-export declare function timestampUID36(options?: UID36Options): TimestampUID36;
+export declare function timeUID36(options?: UID36Options): TimeUID36;
 
 /**
  * Formats a Base36 string into a valid UID36.
@@ -79,3 +79,29 @@ export declare function timestampUID36(options?: UID36Options): TimestampUID36;
  * @returns A properly formatted UID36 string
  */
 export declare function stylizeUID36(value: string, maxLength: number, lower: boolean): UID36;
+
+/**
+ * Check if a string is a valid UID36, using a regular expression
+ * If the string contains only numbers and letters, it will be considered a valid UID36
+ * The original UID36 of 128 bits is composed of 25 characters, so the length parameter is optional
+ * @param value - The string to check
+ * @returns Whether the string is a valid UID36
+ */
+export declare function isUID36(value: string, length?: number = 25): value is UID36;
+
+/**
+ * Normalizes a UID36 string to uppercase and trims whitespace
+ * @param value - The UID36 string to normalize
+ * @returns The normalized UID36 string
+ */
+export declare function normalizeUID36<T extends UID36>(value: string): T;
+
+/**
+ * Converts a byte array (Uint8Array) into a Base36 encoded string.
+ */
+export declare function bufferToBase36(bytes: Uint8Array): string;
+
+/**
+ * Converts a Base36 string into a byte array (Uint8Array).
+ */
+export declare function base36ToBuffer(value: string): Uint8Array;

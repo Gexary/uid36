@@ -1,13 +1,5 @@
 import { secureRandomBytes } from "random";
 
-/**
- * Converts a byte array (Uint8Array) into a Base36 encoded string.
- *
- * The function interprets the byte array as a single large integer
- * (big-endian), then converts that integer into a Base36 string.
- *
- * This approach is efficient and avoids intermediate string conversions.
- */
 export function bufferToBase36(bytes: Uint8Array): string {
   let value = 0n;
 
@@ -16,6 +8,19 @@ export function bufferToBase36(bytes: Uint8Array): string {
   }
 
   return value.toString(36);
+}
+
+export function base36ToBuffer(value: string): Uint8Array {
+  let big = BigInt(`0x${BigInt(parseInt(value, 36)).toString(16)}`);
+
+  const bytes: number[] = [];
+
+  while (big > 0n) {
+    bytes.unshift(Number(big & 0xffn));
+    big >>= 8n;
+  }
+
+  return new Uint8Array(bytes);
 }
 
 /**

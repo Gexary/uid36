@@ -5,12 +5,12 @@
 A compact, URL-safe, and type-safe identifier format designed for performance, ordering, and reversibility.
 
 ```bash
-pnpm add uid36@uid36
+npm install uid36@uid36
 ```
 
 ## Overview
 
-**UID36** is a 128-bit identifier encoded in base36, optimized for:
+**UID36** is a 128-bit (only 25 chars) identifier encoded in base36, optimized for:
 
 - **Compactness** compared to UUID
 - **URL-safe encoding**
@@ -26,37 +26,27 @@ It combines the strengths of UUIDs, ULIDs, and NanoIDs into a single cohesive fo
 
 ### Binary Layout (128 bits)
 
-| Type              | Layout                                    |
-| ----------------- | ----------------------------------------- |
-| `RANDOM_UID36`    | `[128 bits randomness]`                   |
-| `TIMESTAMP_UID36` | `[48 bits timestamp][80 bits randomness]` |
+| Type           | Layout                                    |
+| -------------- | ----------------------------------------- |
+| `RANDOM_UID36` | `[128 bits randomness]`                   |
+| `TIME_UID36`   | `[48 bits timestamp][80 bits randomness]` |
 
 ---
 
 ## Variants
 
-### Random UID
+### Random UID36
 
 - Fully random
 - Suitable for general-purpose unique identifiers
 - Extremely low collision probability
 
-### Timestamp UID (ULID-like)
+### Timestamp UID36
 
 - 48-bit timestamp (millisecond precision)
 - 80-bit randomness
 - Naturally **sortable by creation time**
 - Ideal for databases and distributed systems
-
----
-
-## Features
-
-- URL-safe base36 encoding
-- Monotonic generation support
-- Deterministic parsing and validation
-- High-performance generation (optimized for JS/TS)
-- Compact representation (shorter than UUID)
 
 ---
 
@@ -78,11 +68,16 @@ It combines the strengths of UUIDs, ULIDs, and NanoIDs into a single cohesive fo
 ### Generate a Random UID
 
 ```ts
-import { randomUID36 } from "uid36";
+import { randomUID36 } from "@uid36/uid36";
 
-const id = randomUID36();
+const id1 = randomUID36();
+// "5X9VEBQFXU54ZANJ2GCUS58YR" -> 25 chars, uppercase by default
 
-console.log(id);
+const id2 = randomUID36({ lower: true });
+// "5x9vebqfxu54zanj2gcus58yr" -> 25 chars, lowercase
+
+const id3 = randomUID36({ length: 8, secure: false });
+// "2SK2GV9TFVTI5" -> Smaller UID36 (Less entropy)
 ```
 
 ---
@@ -90,11 +85,10 @@ console.log(id);
 ### Generate a Timestamp UID
 
 ```ts
-import { timestampUID36 } from "uid36";
+import { timeUID36 } from "@uid36/uid36";
 
-const id = timestampUID36();
-
-console.log(id);
+const t1 = timeUID36();
+// "0H85MN4SY43AMQ5FCW1V0WYNL" (sortable)
 ```
 
 ---
@@ -114,7 +108,9 @@ const id = randomUID36({
 ## TypeScript Types
 
 ```ts
-export type UID36 = string & { readonly __brand: unique symbol };
+type UID36 = string & { readonly __brand: unique symbol };
+type RandomUID36 = UID36;
+type TimeUID36 = UID36;
 ```
 
 This ensures:
@@ -128,16 +124,37 @@ This ensures:
 ## Validation
 
 ```ts
-import { isUID36 } from "uid36";
+import { isUID36, normalizeUID36 } from "@uid36/uid36";
 
 isUID36("abc123"); // boolean
+
+const normalized = normalizeUID36("   abc123  ");
+// "ABC123" (uppercase and trimmed)
 ```
 
 Validation guarantees:
 
 - Correct base36 encoding
-- Valid length
+- Valid length (25 chars by default)
 - Proper structure
+
+---
+
+## Converters
+
+```ts
+import { bufferToBase36, base36ToBuffer } from "@uid36/uid36";
+
+const bytes = new Uint8Array([1, 2, 3, 4]);
+
+const base36 = bufferToBase36(bytes);
+// "a2f44" (exemple)
+
+const back = base36ToBuffer(base36);
+// Uint8Array([1, 2, 3, 4])
+```
+
+Converters are useful for interoperability with other libraries.
 
 ---
 
