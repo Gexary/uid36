@@ -5,12 +5,12 @@
 A compact, URL-safe, and type-safe identifier format designed for performance, ordering, and reversibility.
 
 ```bash
-npm install uid36@uid36
+npm install @uid36/uid36
 ```
 
 ## Overview
 
-**UID36** is a 128-bit (only 25 chars) identifier encoded in base36, optimized for:
+**UID36** is a 128-bit (only 26 chars) identifier encoded in base36, optimized for:
 
 - **Compactness** compared to UUID
 - **URL-safe encoding**
@@ -71,10 +71,10 @@ It combines the strengths of UUIDs, ULIDs, and NanoIDs into a single cohesive fo
 import { randomUID36 } from "@uid36/uid36";
 
 const id1 = randomUID36();
-// "5X9VEBQFXU54ZANJ2GCUS58YR" -> 25 chars, uppercase by default
+// "5X9VEBQFXU54ZANJ2GCUS58YR" -> 26 chars, uppercase by default
 
 const id2 = randomUID36({ lower: true });
-// "5x9vebqfxu54zanj2gcus58yr" -> 25 chars, lowercase
+// "5x9vebqfxu54zanj2gcus58yr" -> 26 chars, lowercase
 
 const id3 = randomUID36({ length: 8, secure: false });
 // "2SK2GV9TFVTI5" -> Smaller UID36 (Less entropy)
@@ -135,7 +135,7 @@ const normalized = normalizeUID36("   abc123  ");
 Validation guarantees:
 
 - Correct base36 encoding
-- Valid length (25 chars by default)
+- Valid length (26 chars by default)
 - Proper structure
 
 ---

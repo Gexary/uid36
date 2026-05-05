@@ -3,6 +3,15 @@ interface UID36Options {
   secure?: boolean;
 }
 
+export interface RandomUID36Options extends UID36Options {
+  length?: number;
+  pad?: boolean;
+}
+
+export interface TimeUID36Options extends UID36Options {}
+
+export type RandomUID36Function = () => RandomUID36;
+
 /**
  * Base type for a UID36 identifier.
  *
@@ -30,78 +39,79 @@ export type RandomUID36 = UID36;
  */
 export type TimeUID36 = UID36;
 
-/**
- * Generates a random UID36.
- *
- * This function:
- * - Generates random bytes (secure or fast)
- * - Converts them into a Base36 string
- * - Normalizes the length to ensure consistency
- *
- * The result is a compact, URL-safe identifier.
- *
- * @param options - Configuration options
- * @param options.lower - If true, returns lowercase characters
- * @param options.secure - If true, uses cryptographically secure randomness
- * @param options.length - Number of random bytes (default: 16)
- * @returns A RandomUID36 string
- */
-export declare function randomUID36(options?: UID36Options & { length?: number }): RandomUID36;
+declare const uid36: {
+  /**
+   * Generates a random UID36.
+   *
+   * This function:
+   * - Generates random bytes (secure or fast)
+   * - Converts them into a Base36 string
+   * - Normalizes the length to ensure consistency
+   *
+   * The result is a compact, URL-safe identifier.
+   *
+   * @param options - Configuration options
+   * @param options.lower - If true, returns lowercase characters
+   * @param options.secure - If true, uses cryptographically secure randomness
+   * @param options.length - Number of random bytes (default: 16)
+   * @returns A RandomUID36 string
+   */
+  random: (options?: UID36Options & { length?: number }) => RandomUID36;
 
-/**
- * Generates a timestamp-based UID36.
- *
- * Structure of the ID:
- * - First 6 bytes: timestamp (milliseconds since epoch, big-endian)
- * - Last 10 bytes: random values
- *
- * This ensures:
- * - Temporal ordering (based on creation time)
- * - Uniqueness (due to random suffix)
- *
- * @param options - Configuration options
- * @param options.lower - If true, returns lowercase characters
- * @param options.secure - Whether to use cryptographically secure randomness
- * @returns A TimeUID36 string
- */
-export declare function timeUID36(options?: UID36Options): TimeUID36;
+  /**
+   * Generates a timestamp-based UID36.
+   *
+   * Structure of the ID:
+   * - First 6 bytes: timestamp (milliseconds since epoch, big-endian)
+   * - Last 10 bytes: random values
+   *
+   * This ensures:
+   * - Temporal ordering (based on creation time)
+   * - Uniqueness (due to random suffix)
+   *
+   * @param options - Configuration options
+   * @param options.lower - If true, returns lowercase characters
+   * @param options.secure - Whether to use cryptographically secure randomness
+   * @returns A TimeUID36 string
+   */
+  time: (options?: UID36Options) => TimeUID36;
 
-/**
- * Formats a Base36 string into a valid UID36.
- *
- * - Pads the value with leading zeros to reach the expected length.
- * - Applies casing based on the `lower` option.
- * - Uses a type assertion to enforce the UID36 branded type.
- *
- * @param value - The Base36 string to format
- * @param maxLength - The target length of the UID
- * @param lower - If true, returns lowercase; otherwise uppercase
- * @returns A properly formatted UID36 string
- */
-export declare function stylizeUID36(value: string, maxLength: number, lower: boolean): UID36;
+  /**
+   * Check if a string is a valid UID36, using a regular expression
+   * If the string contains only numbers and letters, it will be considered a valid UID36
+   * The original UID36 of 128 bits is composed of 26 characters, so the length parameter is optional
+   * @param value - The string to check
+   * @returns Whether the string is a valid UID36
+   */
+  is: (value: string, length?: number) => value is UID36;
 
-/**
- * Check if a string is a valid UID36, using a regular expression
- * If the string contains only numbers and letters, it will be considered a valid UID36
- * The original UID36 of 128 bits is composed of 25 characters, so the length parameter is optional
- * @param value - The string to check
- * @returns Whether the string is a valid UID36
- */
-export declare function isUID36(value: string, length?: number = 25): value is UID36;
+  /**
+   * Generates a custom UID36 using a custom function.
+   *
+   * This function:
+   * - Generates random bytes (secure or fast)
+   * - Converts them into a Base36 string
+   * - Normalizes the length to ensure consistency
+   *
+   * The result is a compact, URL-safe identifier.
+   *
+   * @param options - Configuration options
+   * @param options.lower - If true, returns lowercase characters
+   * @param options.secure - If true, uses cryptographically secure randomness
+   * @param options.length - Number of random bytes (default: 16)
+   * @returns A RandomUID36 string
+   */
+  custom: (options?: UID36Options & { length?: number }) => RandomUID36Function;
 
-/**
- * Normalizes a UID36 string to uppercase and trims whitespace
- * @param value - The UID36 string to normalize
- * @returns The normalized UID36 string
- */
-export declare function normalizeUID36<T extends UID36>(value: string): T;
+  /**
+   * Convert a UUID to a UID36
+   */
+  fromUUID: (uuid: string) => UID36;
 
-/**
- * Converts a byte array (Uint8Array) into a Base36 encoded string.
- */
-export declare function bufferToBase36(bytes: Uint8Array): string;
+  /**
+   * Convert a UID36 to a UUID
+   */
+  toUUID: (uid36: UID36, format?: "standard" | "no-dash") => string;
+};
 
-/**
- * Converts a Base36 string into a byte array (Uint8Array).
- */
-export declare function base36ToBuffer(value: string): Uint8Array;
+export default uid36;
